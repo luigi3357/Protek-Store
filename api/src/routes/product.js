@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { Product, User } = require("../db");
-const { created, infoDb, filterRubro } = require('../utils/product');
+const { created, infoDb, getRubro } = require('../utils/product');
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -18,10 +18,17 @@ router.get("/product", async (req, res) => {
     const {title} = req.query
     if (title) {
       if(pro.length > 0){
-      const filterDb = pro.filter(el => el.title.toUpperCase().includes(title.toUpperCase()))
-      filterDb.length ?
-        res.status(200).json(filterDb) :
-        res.status(404).json('No se encuentra su pais')
+      const filterTitle = pro.filter(el => el.title.toUpperCase().includes(title.toUpperCase()))
+      if(filterTitle.length){
+        return res.status(200).json(filterTitle)
+      }else{
+        const filterRubro = pro.filter(el => el.rubro.toUpperCase().includes(title.toUpperCase()))
+        if(filterRubro){
+          return res.status(200).json(filterRubro)
+        }else{  
+          return res.status(404).json('No se encuentra su producto')
+        }
+        }
       }
     } else {
         let asc = pro.sort((a, b)=>{
@@ -58,7 +65,7 @@ router.get("/get-rubro", async (req, res)=>{
 router.get("/product/:rubro", async (req, res)=>{
     let pro = await infoDb()
     let { rubro }=req.params
-    if(rubro ==="All"){
+    if(rubro ==="GENERAL"){
       return res.send(pro)
     }else{
       let filtro = pro.filter(el=> el.rubro.toLowerCase().includes(rubro.toLowerCase()))

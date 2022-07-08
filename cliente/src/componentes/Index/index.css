@@ -1,0 +1,9 @@
+.navbar {
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(202, 213, 219, 0.808) 10%, rgba(202, 213, 219, 0.836) 88%);
+    padding-bottom: 6px;
+    display: inline-block;
+    z-index: 3;
+}

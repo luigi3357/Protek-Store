@@ -1,34 +1,37 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GETPRODUCTS } from '../../redux/action/action';
+import { GETPRODUCTS, GETRUBROS } from '../../redux/action/action';
 import Banners from '../Banner/Banner'
 import NavBar from '../NavBar/Navbar'
 import Products from '../Products/Products';
 import { Center, Container, Grid, GridItem } from '@chakra-ui/react'
+import './index.css'
 
 
 
 const Index = () => {
     const dispatch = useDispatch()
     const allProducts = useSelector((state) => state.rootReducer.products)
-    console.log(allProducts, "soy el index")
-
+    const [name, setName]= useState()
     useEffect(() => {
-        dispatch(GETPRODUCTS())
+        dispatch(GETPRODUCTS());
+        dispatch(GETRUBROS());
     }, [dispatch]);
 
 
     return (
         <>
             <Banners />
-            <NavBar />
+            <div className="navbar">
+            <NavBar name={name} setName={setName} />
+            </div>
             <Center>
                 <Grid w='95%' templateColumns='repeat(3, 1fr)' gap={6}>
                     {
                         allProducts?.map(e => {
                             return (
-                                <GridItem>
+                                <GridItem key={e.id}>
                                     <Products
                                         id={e.id}
                                         title={e.title}

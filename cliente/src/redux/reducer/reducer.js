@@ -5,6 +5,7 @@ import Cookie from 'js-cookie'
 
 const initialState = {
   products:[],
+  rubro:[],
   users:[]
 }
 
@@ -17,7 +18,18 @@ const rootReducer = createReducer(initialState, (builder) => {
     .addCase(actions.GETPRODUCTS.fulfilled, (state, action) => {
       state.products=[]
       state.products=action.payload
-      console.log(state.products,"reducer")
+    })
+    .addCase(actions.GETRUBROS.fulfilled, (state, action) => {
+      state.rubro=[]
+      state.rubro=action.payload
+    })
+    .addCase(actions.FILTERRUBROS.fulfilled, (state, action) => {
+      state.products=[]
+      state.products=action.payload
+    })
+    .addCase(actions.SEARCHPRODUCT.fulfilled, (state, action) => {
+      state.products=[]
+      state.products=action.payload
     })
 })
 export default rootReducer
