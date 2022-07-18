@@ -10,6 +10,8 @@ import Cookie from 'js-cookie'
 
 ////home////
 import Index from './componentes/Index/index'
+import Login from './componentes/login/login';
+import Register from './componentes/Register/Register';
 
 
 //////////////////////////////// RUTAS FIN ///////////////////////////////////////
@@ -21,6 +23,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );

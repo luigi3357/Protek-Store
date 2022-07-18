@@ -40,3 +40,16 @@
 button {
   font-size: calc(10px + 2vmin);
 }
+
+.Login{
+  /* border: 2px solid red; */
+  padding-top: 2%;
+  height: 100vh;
+  background: linear-gradient(45deg, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%);
+}
+.Login2{
+  /* border: 2px solid red; */
+  padding-top: 3%;
+  height: 100vh;
+  background: linear-gradient(45deg, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%);
+}

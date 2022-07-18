@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import {
     Center,
     Button,
@@ -31,6 +32,7 @@ import { FILTERRUBROS, SEARCHPRODUCT } from '../../redux/action/action';
 const NavBar = ({name, setName}) => {
     const allRubros = useSelector((state) => state.rootReducer.rubro)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     function handleFilter(e){
     if(e){
@@ -91,8 +93,8 @@ function handleInputChange(e) {
                         </form>
                 <Spacer />
                 <Box flex='1'>
-                    <Button w='7em' mr='.5em' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Login</Button>
-                    <Button w='7em' mr='.5em' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Register</Button>
+                    <Button onClick={e=>navigate('/login')} w='7em' mr='.5em' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Login</Button>
+                    <Button onClick={e=>navigate('/register')} w='7em' mr='.5em' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Register</Button>
                     <Button bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'><MdOutlineAddShoppingCart /></Button>
                 </Box>
             </Flex>
