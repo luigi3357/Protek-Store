@@ -15,6 +15,7 @@ conection.sync({ force: true }).then(async () => {
   const own = User.findOrCreate({
     where:{
       name: "Owner",
+      lastName: 'Owner',
       email: "admin@email.com",
       contraseña: "Owner",
       Owner: true,

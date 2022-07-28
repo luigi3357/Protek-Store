@@ -30,17 +30,20 @@ import {
     ArrowLeftIcon
 } from '@chakra-ui/icons'
 import login from '../../assets/login.png'
+import { CREATEUSER } from '../../redux/action/action';
 
 
 const Register = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [show, setShow] = useState(false)
+    const [show2, setShow2] = useState(false)
     const [input, setInput] = useState({
+        name: "",
+        lastName: "",
         email: "",
         password: "",
         repeatPassword: "",
-        name: "",
-        lastName: ""
     })
 
     function handleInputChange(e) {
@@ -49,11 +52,17 @@ const Register = () => {
             [e.target.name]: e.target.value
         });
     }
+    function handleSubmit() {
+        dispatch(CREATEUSER(input))
+        setTimeout(() => {
+            navigate('/')
+        }, 1000)
+    }
 
-    console.log(input)
     const isError = input.email === ''
 
     const handleClick = () => setShow(!show)
+    const handleClick2 = () => setShow2(!show2)
 
     return (
         <div className='Login2'>
@@ -78,12 +87,7 @@ const Register = () => {
                 </Center>
                 <Formik
                     initialValues={input}
-                    onSubmit={(values, actions) => {
-                        setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2))
-                            actions.setSubmitting(false)
-                        }, 1000)
-                    }}
+                    onSubmit={(e) => { handleSubmit(e) }}
                 >
                     {(props) => (
                         <Form>
@@ -101,6 +105,7 @@ const Register = () => {
                                     />
                                     <FormLabel fontSize='1em' htmlFor='lastName'>Last Name</FormLabel>
                                     <Input
+                                        color='black'
                                         id='lastName'
                                         name='lastName'
                                         value={input.lastName}
@@ -112,6 +117,7 @@ const Register = () => {
 
                                     <FormLabel fontSize='1em' htmlFor='email'>Email</FormLabel>
                                     <Input
+                                        color='black'
                                         id='email'
                                         type='email'
                                         name='email'
@@ -136,6 +142,7 @@ const Register = () => {
                                     <FormLabel fontSize='1em' htmlFor='email'>Password</FormLabel>
                                     <InputGroup size='md'>
                                         <Input
+                                            color='black'
                                             // _placeholder={{ color: 'black' }}
                                             border='1px'
                                             borderColor='black'
@@ -159,12 +166,13 @@ const Register = () => {
                                     <FormLabel fontSize='1em' htmlFor='repeatPassword'>Repeat Password</FormLabel>
                                     <InputGroup size='md'>
                                         <Input
+                                            color='black'
                                             // _placeholder={{ color: 'black' }}
                                             border='1px'
                                             borderColor='black'
                                             id='repeatPassword'
-                                            type={show ? 'text' : 'repeatPassword'}
-                                            name='password'
+                                            type={show2 ? 'text' : 'password'}
+                                            name='repeatPassword'
                                             value={input.repeatPassword}
                                             placeholder='Repeat password'
                                             pr='4.5rem'
@@ -174,8 +182,8 @@ const Register = () => {
                                         <InputRightElement width='4.5rem'>
                                             <Button
                                                 bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'
-                                                h='1.75rem' size='sm' onClick={handleClick}>
-                                                {show ? 'Hide' : 'Show'}
+                                                h='1.75rem' size='sm' onClick={handleClick2}>
+                                                {show2 ? 'Hide' : 'Show'}
                                             </Button>
                                         </InputRightElement>
                                     </InputGroup>
@@ -197,7 +205,7 @@ const Register = () => {
                                     border='1px'
                                     borderColor='black'
                                     bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'
-                                    isLoading={props.isSubmitting}
+                                    // isLoading={props.isSubmitting}
                                     type='submit'
                                     h='2em'
                                 >

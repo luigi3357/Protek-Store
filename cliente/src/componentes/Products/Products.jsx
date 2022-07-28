@@ -1,21 +1,7 @@
 import * as React from 'react'
 import {
-    Center,
     Button,
-    ButtonGroup,
-    Grid,
-    GridItem,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    IconButton,
-    Input,
-    useMediaQuery,
     Container,
-    Square,
-    Flex,
-    Box,
     Text,
     Spacer,
     Image
@@ -32,7 +18,17 @@ const Products = ({
     heading
 }) => {
     return (
-        <Container color='aliceblue' h='24em' fontFamily='san serif' bg='rgba(7,95,171,1) 88%' mt='4' borderRadius="md" border='1px' borderColor='gray' w='80%'>
+        <Container 
+        color='aliceblue' 
+        // h='24em' 
+        pb='45px'
+        fontFamily='san serif' 
+        bg='rgba(7,95,171,1) 88%' 
+        mt='4' 
+        borderRadius="md" 
+        border='1px' 
+        borderColor='gray' 
+        w='80%'>
             <Text w='100%' fontSize='.8em'>{title}</Text>
             <Image h='10em' src={image} alt="Not Found" />
             <Text>Code: {code}</Text>

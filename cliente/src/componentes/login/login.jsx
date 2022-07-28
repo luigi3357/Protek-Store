@@ -30,15 +30,23 @@ import {
     ArrowLeftIcon
 } from '@chakra-ui/icons'
 import login from '../../assets/login.png'
+import { GETUSER, SEARCHUSER } from '../../redux/action/action';
 
 
 const Login = () => {
-    const navigate = useNavigate()
-    const [show, setShow] = useState(false)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.rootReducer.users)
+    console.log(user)
+    const [show, setShow] = useState(false);
     const [input, setInput] = useState({
         email: "",
         password: ""
-    })
+    });
+
+    useEffect(() => {
+        dispatch(GETUSER());
+    }, [dispatch]);
 
     function handleInputChange(e) {
         setInput({
@@ -47,10 +55,23 @@ const Login = () => {
         });
     }
 
-    console.log(input)
     const isError = input.email === ''
 
     const handleClick = () => setShow(!show)
+    function handleSubmit() {
+        const oneUser = user.filter((e) => e.email === input.email)
+        console.log(oneUser.password)
+        if (!oneUser.length) {
+            alert('su usuario no se encuentra registrado')
+        } else {
+            dispatch(SEARCHUSER(input))
+            setTimeout(() => {
+                // localStorage.setItem('login',JSON.stringify(user))
+                navigate('/')
+            }, 3000)
+        }
+
+    }
 
     return (
         <div className='Login'>
@@ -75,12 +96,7 @@ const Login = () => {
                 </Center>
                 <Formik
                     initialValues={input}
-                    onSubmit={(values, actions) => {
-                        setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2))
-                            actions.setSubmitting(false)
-                        }, 1000)
-                    }}
+                    onSubmit={(e) => { handleSubmit(e) }}
                 >
                     {(props) => (
                         <Form>
@@ -88,6 +104,7 @@ const Login = () => {
                                 <FormControl w='60%' isInvalid={isError}>
                                     <FormLabel fontSize='1.2em' htmlFor='email'>Email</FormLabel>
                                     <Input
+                                        color='black'
                                         id='email'
                                         type='email'
                                         name='email'
@@ -111,6 +128,7 @@ const Login = () => {
                                     <FormLabel fontSize='1.2em' htmlFor='email'>Password</FormLabel>
                                     <InputGroup size='md'>
                                         <Input
+                                            color='black'
                                             // _placeholder={{ color: 'black' }}
                                             border='1px'
                                             borderColor='black'

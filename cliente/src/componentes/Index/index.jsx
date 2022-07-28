@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GETPRODUCTS, GETRUBROS } from '../../redux/action/action';
+import { GETPRODUCTS, GETRUBROS, GETUSER } from '../../redux/action/action';
 import Banners from '../Banner/Banner'
 import NavBar from '../NavBar/Navbar'
 import Products from '../Products/Products';
@@ -13,11 +13,16 @@ import './index.css'
 const Index = () => {
     const dispatch = useDispatch()
     const allProducts = useSelector((state) => state.rootReducer.products)
+    const user = useSelector((state) => state.rootReducer.users)
     const [name, setName]= useState()
+
+
     useEffect(() => {
         dispatch(GETPRODUCTS());
         dispatch(GETRUBROS());
     }, [dispatch]);
+
+      
 
 
     return (
