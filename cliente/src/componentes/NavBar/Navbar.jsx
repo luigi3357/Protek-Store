@@ -97,13 +97,13 @@ const NavBar = ({ name, setName }) => {
                         user ?
                             <Flex ml='40%'>
                                 <Button onClick={e =>{handleLogout(e)}} w='7em' mr='.5em' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Logout</Button>
-                                <Button bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'><MdOutlineAddShoppingCart /></Button>
+                                <Button onClick={e => navigate('/cart')} bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'><MdOutlineAddShoppingCart /></Button>
                             </Flex>
                             :
                             <Flex ml='7%'>
                                 <Button onClick={e => navigate('/login')} w='7em' mr='.5em' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Login</Button>
                                 <Button onClick={e => navigate('/register')} w='7em' mr='.5em' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Register</Button>
-                                <Button bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'><MdOutlineAddShoppingCart /></Button>
+                                <Button onClick={e => navigate('/cart')} bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'><MdOutlineAddShoppingCart /></Button>
                             </Flex>
                     }
 

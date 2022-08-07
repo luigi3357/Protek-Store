@@ -7,6 +7,10 @@ import {
     Image
 
 } from '@chakra-ui/react';
+import { ADD_TO_CART } from '../../redux/action/action';
+import { useDispatch } from 'react-redux';
+
+
 
 const Products = ({
     id,
@@ -15,8 +19,13 @@ const Products = ({
     description,
     image,
     price,
-    heading
+    heading,
+    allProducts
 }) => {
+const dispatch = useDispatch()
+    function handleAddToCart(id){
+        dispatch(ADD_TO_CART(id))
+    }
     return (
         <Container 
         color='aliceblue' 
@@ -36,8 +45,8 @@ const Products = ({
             <Text>Precio: {price}</Text>
             <Text fontSize='.8em'>Rubro: {heading}</Text>
             <Text>{description}</Text>
-                <Button color='black' w='100%' border='1px' borderColor='black' mb='2' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Comprar Ahora</Button>
-                <Button color='black' w='100%' border='1px' borderColor='black' mb='2' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Agregar Al Carrito</Button>
+                <Button  color='black' w='100%' border='1px' borderColor='black' mb='2' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Comprar Ahora</Button>
+                <Button onClick={()=>handleAddToCart(id)} color='black' w='100%' border='1px' borderColor='black' mb='2' bgGradient='linear(to-r, rgba(1,173,178,1) 10%, rgba(7,95,171,1) 88%)'>Agregar Al Carrito</Button>
         </Container>
     )
 }

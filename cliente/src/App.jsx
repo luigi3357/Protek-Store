@@ -12,6 +12,7 @@ import Cookie from 'js-cookie'
 import Index from './componentes/Index/index'
 import Login from './componentes/login/login';
 import Register from './componentes/Register/Register';
+import Shopingcart from './componentes/shopingcart/Shopingcart';
 
 
 //////////////////////////////// RUTAS FIN ///////////////////////////////////////
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Shopingcart />} />
       </Routes>
     </Router>
   );

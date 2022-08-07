@@ -16,7 +16,6 @@ const Index = () => {
     const user = useSelector((state) => state.rootReducer.users)
     const [name, setName]= useState()
 
-
     useEffect(() => {
         dispatch(GETPRODUCTS());
         dispatch(GETRUBROS());
@@ -45,6 +44,7 @@ const Index = () => {
                                         image={e.image}
                                         price={e.precio}
                                         heading={e.rubro}
+                                        allProducts={allProducts}
                                     />
                                 </GridItem>
                             )

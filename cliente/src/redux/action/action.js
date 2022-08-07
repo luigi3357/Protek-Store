@@ -45,5 +45,22 @@ export const GETUSER = createAsyncThunk('GETUSER', async (payload) => {
 })
 
 export const GETLOGOUT = createAsyncThunk('GETLOGOUT',async ()=>{
-    console.log('entre al logout')
+})
+
+
+/////////////////////////////////////   
+//      ACCIONES PARA EL CARRO     //  
+/////////////////////////////////////
+
+export const ADD_TO_CART = createAsyncThunk('ADD_TO_CART',async (payload)=>{
+    return payload
+})
+export const REMOVE_ONE_FROM_CART = createAsyncThunk('REMOVE_ONE_FROM_CART',async ()=>{
+    console.log('entre al REMOVE ONE')
+})
+export const REMOVE_ALL_FROM_CART = createAsyncThunk('REMOVE_ALL_FROM_CART',async ()=>{
+    console.log('entre al REMOVE ALL')
+})
+export const CLEAR_CART = createAsyncThunk('ADD_TOO_CART',async ()=>{
+    console.log('entre al CLEAR')
 })
